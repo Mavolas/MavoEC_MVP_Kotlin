@@ -3,7 +3,9 @@ package com.mavolas.usercenter
 import android.os.Bundle
 import com.mavolas.base.ui.activity.BaseMvpActivity
 import com.mavolas.usercenter.presenter.RegisterPresenter
-import com.mavolas.usercenter.view.RegisterView
+import com.mavolas.usercenter.presenter.view.RegisterView
+import kotlinx.android.synthetic.main.activity_register.*
+import org.jetbrains.anko.toast
 
 
 /**
@@ -13,7 +15,7 @@ import com.mavolas.usercenter.view.RegisterView
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
     override fun onRegisterResult(result: Boolean) {
 
-       // toast("success")
+        toast("success")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,10 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
         setContentView(R.layout.activity_register)
         mPresenter = RegisterPresenter();
         mPresenter.mView = this;
+
+        mRegisterBtn.setOnClickListener{
+            mPresenter.register("","","");
+        }
     }
 
 

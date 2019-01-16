@@ -1,4 +1,4 @@
-package com.mavolas.usercenter.view
+package com.mavolas.usercenter.presenter.view
 
 import com.mavolas.base.presenter.view.BaseView
 

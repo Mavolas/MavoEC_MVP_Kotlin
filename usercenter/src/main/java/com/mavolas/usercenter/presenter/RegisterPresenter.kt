@@ -1,7 +1,7 @@
 package com.mavolas.usercenter.presenter
 
 import com.mavolas.base.presenter.BasePresenter
-import com.mavolas.usercenter.view.RegisterView
+import com.mavolas.usercenter.presenter.view.RegisterView
 
 /**
  * Author by Andy
