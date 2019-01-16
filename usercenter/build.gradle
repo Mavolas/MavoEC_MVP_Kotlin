@@ -43,10 +43,12 @@ android {
 
     }
 
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    api project(':provider')
+    compile project(':provider')
 }
