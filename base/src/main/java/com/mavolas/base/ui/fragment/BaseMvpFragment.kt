@@ -1,4 +1,4 @@
-package com.mavolas.base.ui.activity
+package com.mavolas.base.ui.fragment
 
 import android.os.Bundle
 import com.mavolas.base.common.BaseApplication
@@ -8,13 +8,14 @@ import com.mavolas.base.injection.module.ActivityModule
 import com.mavolas.base.injection.module.LifecycleProviderModule
 import com.mavolas.base.presenter.BasePresenter
 import com.mavolas.base.presenter.view.BaseView
+import com.mavolas.base.ui.activity.BaseActivity
 import javax.inject.Inject
 
 /**
  * Author by Andy
  * Date on 2018/12/26.
  */
-open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
+open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
 
     lateinit var activityComponent: ActivityComponent
 
@@ -27,8 +28,8 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
 
     private fun initActivityInjection() {
 
-        activityComponent = DaggerActivityComponent.builder().appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
+        activityComponent = DaggerActivityComponent.builder().appComponent((activity.application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(activity))
                 .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
     }

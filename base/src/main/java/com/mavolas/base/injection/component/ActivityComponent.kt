@@ -5,6 +5,8 @@ import android.content.Context
 import com.mavolas.base.injection.ActivityScope
 import com.mavolas.base.injection.module.ActivityModule
 import com.mavolas.base.injection.module.AppModule
+import com.mavolas.base.injection.module.LifecycleProviderModule
+import com.trello.rxlifecycle.LifecycleProvider
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,7 +16,12 @@ import javax.inject.Singleton
  */
 
 @ActivityScope
-@Component(dependencies = arrayOf(AppComponent::class),modules = arrayOf(ActivityModule::class))
+@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(ActivityModule::class
+        , LifecycleProviderModule::class))
 interface ActivityComponent {
     fun activity(): Activity
+
+    fun context():Context
+
+    fun lifecycleProvider(): LifecycleProvider<*>
 }

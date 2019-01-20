@@ -27,9 +27,10 @@ class RegisterPresenter @Inject constructor() :BasePresenter<RegisterView>() {
                 .execute(object :BaseSubscriber<Boolean>(){
 
                     override fun onNext(t: Boolean) {
-                        mView.onRegisterResult(t)
+                        if (t)
+                        mView.onRegisterResult("注冊成功")
                     }
-                })
+                },lifecycleProvider)
 
     }
 }

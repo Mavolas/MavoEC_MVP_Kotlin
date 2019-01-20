@@ -15,29 +15,26 @@ import org.jetbrains.anko.toast
  * Date on 2018/12/26.
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
-    override fun onRegisterResult(result: Boolean) {
+    override fun injectComponent() {
+        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView = this;
 
-        toast("success")
+    }
+
+    override fun onRegisterResult(result: String) {
+
+        toast(result)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        initInjection();
-
-
-
         mRegisterBtn.setOnClickListener{
             mPresenter.register(mPhone.text.toString(),mPassword.text.toString(),mVerifyCode.text.toString());
         }
     }
 
-    private fun initInjection() {
-
-        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
-        mPresenter.mView = this;
-    }
 
 
 }
