@@ -2,6 +2,8 @@ package com.mavolas.usercenter
 
 import android.os.Bundle
 import com.mavolas.base.ui.activity.BaseMvpActivity
+import com.mavolas.usercenter.injection.component.DaggerUserComponent
+import com.mavolas.usercenter.injection.module.UserModule
 import com.mavolas.usercenter.presenter.RegisterPresenter
 import com.mavolas.usercenter.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
@@ -21,12 +23,20 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        mPresenter = RegisterPresenter();
-        mPresenter.mView = this;
+
+        initInjection();
+
+
 
         mRegisterBtn.setOnClickListener{
             mPresenter.register(mPhone.text.toString(),mPassword.text.toString(),mVerifyCode.text.toString());
         }
+    }
+
+    private fun initInjection() {
+
+        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView = this;
     }
 
 

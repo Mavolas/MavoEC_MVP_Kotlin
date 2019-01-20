@@ -5,13 +5,14 @@ import com.mavolas.base.data.protocol.BaseResp
 import com.mavolas.usercenter.data.api.UserApi
 import com.mavolas.usercenter.data.protocol.RegisterReq
 import rx.Observable
+import javax.inject.Inject
 
 
 /**
  * Author by Andy
  * Date on 2019-01-16.
  */
-class UserRepository {
+class UserRepository @Inject constructor() {
 
     fun register(mobile: String, pwd: String, verifyCode: String): Observable<BaseResp<String>> {
 
